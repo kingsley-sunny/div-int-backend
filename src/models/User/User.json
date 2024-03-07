@@ -1,0 +1,12 @@
+{
+  "fields": {
+    "_id": { "type": "string", "required": true, "defaultAdded": true },
+    "createdAt": { "type": "string", "required": true, "defaultAdded": true },
+    "updatedAt": { "type": "string", "required": true, "defaultAdded": true },
+
+    "firstName": { "type": "string", "required": true, "defaultAdded": false },
+    "lastName": { "type": "string", "required": true, "defaultAdded": false },
+    "age": { "type": "number", "required": true, "defaultAdded": false },
+    "username": { "type": "string", "required": false, "defaultAdded": false }
+  }
+}
