@@ -4,7 +4,13 @@
  * @returns
  */
 export const afterStart = async (...hookFuncs: (() => Promise<void>)[]) => {
-  return Promise.all(hookFuncs);
+  try {
+    hookFuncs.forEach(async func => {
+      Promise.resolve(func());
+    });
+  } catch (error: any) {
+    Promise.reject(error);
+  }
 };
 
 /**
@@ -13,7 +19,13 @@ export const afterStart = async (...hookFuncs: (() => Promise<void>)[]) => {
  * @returns
  */
 export const beforeMigrate = async (...hookFuncs: (() => Promise<void>)[]) => {
-  return Promise.all(hookFuncs);
+  try {
+    hookFuncs.forEach(async func => {
+      Promise.resolve(func());
+    });
+  } catch (error: any) {
+    Promise.reject(error);
+  }
 };
 
 /**
@@ -22,5 +34,11 @@ export const beforeMigrate = async (...hookFuncs: (() => Promise<void>)[]) => {
  * @returns
  */
 export const afterMigrate = async (...hookFuncs: (() => Promise<void>)[]) => {
-  return Promise.all(hookFuncs);
+  try {
+    hookFuncs.forEach(async func => {
+      Promise.resolve(func());
+    });
+  } catch (error: any) {
+    Promise.reject(error);
+  }
 };

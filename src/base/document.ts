@@ -28,11 +28,27 @@ export class Document {
     Document.modelSchemas[modelName] = schema;
   }
 
-  static async connect() {
+  /**
+   *
+   * @param onBeforeConnection - A call back function to call before the database connection
+   * @param onAfterConnection - A call back function to call after the database connection
+   */
+  static async connect(
+    onBeforeConnection?: () => Promise<void>,
+    onAfterConnection?: () => Promise<void>
+  ) {
+    if (onBeforeConnection) {
+      onBeforeConnection();
+    }
+
     Document.client = await MongoClient.connect(
       process.env.DATABASE_URI ?? "mongodb://localhost:27017"
     );
     Document.db = Document.client.db(process.env.DB_NAME ?? "test");
+
+    if (onAfterConnection) {
+      onAfterConnection();
+    }
   }
 
   static getTableName(modelName: string) {
